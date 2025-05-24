@@ -1,0 +1,11 @@
+<!-- sistema_escolar/templates/sistema_escolar/aluno_confirm_delete.html -->
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <h2>Tem certeza de que deseja excluir o aluno "{{ aluno.nome }}"?</h2>
+  <form method="POST">
+    {% csrf_token %}
+    <button type="submit">Sim, excluir</button>
+  </form>
+  <a href="{% url 'aluno_list' %}">Cancelar</a>
+{% endblock %}

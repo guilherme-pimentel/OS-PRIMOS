@@ -1,0 +1,17 @@
+<!-- sistema_escolar/templates/sistema_escolar/professor_confirm_delete.html -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Confirmar Exclusão</title>
+</head>
+<body>
+    <h1>Tem certeza que deseja excluir o professor {{ professor.nome }}?</h1>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Sim, excluir</button>
+        <a href="{% url 'professor_list' %}">Cancelar</a>
+    </form>
+</body>
+</html>

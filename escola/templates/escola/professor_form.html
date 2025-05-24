@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% if form.instance.pk %}Editar Professor{% else %}Novo Professor{% endif %}</title>
+</head>
+<body>
+    <h1>{% if form.instance.pk %}Editar Professor{% else %}Novo Professor{% endif %}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Salvar</button>
+    </form>
+    <a href="{% url 'professor_list' %}">Voltar</a>
+</body>
+</html>

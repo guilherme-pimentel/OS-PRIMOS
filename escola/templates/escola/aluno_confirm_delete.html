@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Confirmar Exclusão</title>
+</head>
+<body>
+    <h1>Confirmar exclusão do aluno {{ aluno.usuario.get_full_name }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        <p>Tem certeza que deseja excluir este aluno?</p>
+        <button type="submit">Sim, excluir</button>
+        <a href="{% url 'aluno_list' %}">Cancelar</a>
+    </form>
+</body>
+</html>
