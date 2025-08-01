@@ -1,0 +1,15 @@
+<h2>Adicionar Equipamento</h2>
+<form method="POST">
+  {% csrf_token %}
+  Nome: <input type="text" name="nome"><br>
+  Potência (W): <input type="number" step="0.01" name="potencia_watts"><br>
+  Horas de uso diário: <input type="number" step="0.01" name="horas_uso_diario"><br>
+  Usuário:
+  <select name="usuario">
+    {% for u in usuarios %}
+      <option value="{{ u.id }}">{{ u.nome }}</option>
+    {% endfor %}
+  </select><br>
+  <button type="submit">Salvar</button>
+</form>
+<a href="{% url 'lista_equipamentos' %}">Voltar</a>

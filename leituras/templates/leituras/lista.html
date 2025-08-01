@@ -1,0 +1,22 @@
+<h2>Leituras de Consumo</h2>
+<a href="{% url 'adicionar_leitura' %}">Nova Leitura</a>
+<table border="1">
+  <tr>
+    <th>Data</th>
+    <th>Consumo (kWh)</th>
+    <th>Medidor</th>
+    <th>Ações</th>
+  </tr>
+  {% for l in leituras %}
+  <tr>
+    <td>{{ l.data }}</td>
+    <td>{{ l.consumo_kwh }}</td>
+    <td>{{ l.medidor.numero_serie }}</td>
+    <td>
+      <a href="{% url 'editar_leitura' l.id %}">Editar</a> |
+      <a href="{% url 'excluir_leitura' l.id %}">Excluir</a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+<a href="/medidores/">Voltar para Medidores</a>

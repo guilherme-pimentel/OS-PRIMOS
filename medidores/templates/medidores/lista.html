@@ -1,0 +1,24 @@
+<h2>Lista de Medidores</h2>
+<a href="{% url 'adicionar_medidor' %}">Adicionar Medidor</a>
+<table border="1">
+  <tr>
+    <th>Número de Série</th>
+    <th>Localização</th>
+    <th>Data de Instalação</th>
+    <th>Usuário</th>
+    <th>Ações</th>
+  </tr>
+  {% for m in medidores %}
+  <tr>
+    <td>{{ m.numero_serie }}</td>
+    <td>{{ m.localizacao }}</td>
+    <td>{{ m.data_instalacao }}</td>
+    <td>{{ m.usuario.nome }}</td>
+    <td>
+      <a href="{% url 'editar_medidor' m.id %}">Editar</a> |
+      <a href="{% url 'excluir_medidor' m.id %}">Excluir</a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+<a href="/usuarios/">Voltar para usuários</a>

@@ -1,0 +1,15 @@
+<h2>Editar Medidor</h2>
+<form method="POST">
+  {% csrf_token %}
+  Número de Série: <input type="text" name="numero_serie" value="{{ medidor.numero_serie }}"><br>
+  Localização: <input type="text" name="localizacao" value="{{ medidor.localizacao }}"><br>
+  Data de Instalação: <input type="date" name="data_instalacao" value="{{ medidor.data_instalacao }}"><br>
+  Usuário:
+  <select name="usuario">
+    {% for u in usuarios %}
+      <option value="{{ u.id }}" {% if u.id == medidor.usuario.id %}selected{% endif %}>{{ u.nome }}</option>
+    {% endfor %}
+  </select><br>
+  <button type="submit">Salvar</button>
+</form>
+<a href="{% url 'lista_medidores' %}">Voltar</a>

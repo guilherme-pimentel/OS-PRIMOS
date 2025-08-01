@@ -1,0 +1,24 @@
+<h2>Faturas</h2>
+<a href="{% url 'adicionar_fatura' %}">Nova Fatura</a>
+<table border="1">
+  <tr>
+    <th>Data</th>
+    <th>Valor (R$)</th>
+    <th>Leitura</th>
+    <th>Status</th>
+    <th>Ações</th>
+  </tr>
+  {% for f in faturas %}
+  <tr>
+    <td>{{ f.data_emissao }}</td>
+    <td>{{ f.valor }}</td>
+    <td>{{ f.leitura.medidor.numero_serie }} ({{ f.leitura.data }})</td>
+    <td>{{ f.paga|yesno:"Paga,Em aberto" }}</td>
+    <td>
+      <a href="{% url 'editar_fatura' f.id %}">Editar</a> |
+      <a href="{% url 'excluir_fatura' f.id %}">Excluir</a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+<a href="/leituras/">Voltar para Leituras</a>

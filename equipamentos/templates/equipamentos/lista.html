@@ -1,0 +1,24 @@
+<h2>Equipamentos</h2>
+<a href="{% url 'adicionar_equipamento' %}">Novo Equipamento</a>
+<table border="1">
+  <tr>
+    <th>Nome</th>
+    <th>Potência (W)</th>
+    <th>Horas de uso/dia</th>
+    <th>Usuário</th>
+    <th>Ações</th>
+  </tr>
+  {% for e in equipamentos %}
+  <tr>
+    <td>{{ e.nome }}</td>
+    <td>{{ e.potencia_watts }}</td>
+    <td>{{ e.horas_uso_diario }}</td>
+    <td>{{ e.usuario.nome }}</td>
+    <td>
+      <a href="{% url 'editar_equipamento' e.id %}">Editar</a> |
+      <a href="{% url 'excluir_equipamento' e.id %}">Excluir</a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+<a href="/faturas/">Voltar para Faturas</a>
