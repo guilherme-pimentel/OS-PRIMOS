@@ -1,24 +1,57 @@
-<h2>Equipamentos</h2>
-<a href="{% url 'adicionar_equipamento' %}">Novo Equipamento</a>
-<table border="1">
-  <tr>
-    <th>Nome</th>
-    <th>Potência (W)</th>
-    <th>Horas de uso/dia</th>
-    <th>Usuário</th>
-    <th>Ações</th>
-  </tr>
-  {% for e in equipamentos %}
-  <tr>
-    <td>{{ e.nome }}</td>
-    <td>{{ e.potencia_watts }}</td>
-    <td>{{ e.horas_uso_diario }}</td>
-    <td>{{ e.usuario.nome }}</td>
-    <td>
-      <a href="{% url 'editar_equipamento' e.id %}">Editar</a> |
-      <a href="{% url 'excluir_equipamento' e.id %}">Excluir</a>
-    </td>
-  </tr>
-  {% endfor %}
-</table>
-<a href="/faturas/">Voltar para Faturas</a>
+{% extends 'base.html' %}
+{% block content %}
+  <div class="content">
+    <h1 style="margin-bottom: 1.5rem;">Equipamentos</h1>
+
+    <div class="card">
+      <div class="card-header">
+        <span>Lista de Equipamentos</span>
+        <a href="{% url 'adicionar_equipamento' %}" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> Adicionar</a>
+      </div>
+      <div class="card-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nome</th>
+              <th>Tipo</th>
+              <th>Potência (W)</th>
+              <th>Status</th>
+              <th>Última Leitura</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for equipamento in equipamentos %}
+              <tr>
+                <td>{{ equipamento.id }}</td>
+                <td>{{ equipamento.nome }}</td>
+                <td>{{ equipamento.tipo }}</td>
+                <td>{{ equipamento.potencia }}</td>
+                <td>
+                  {% if equipamento.status == 'Ativo' %}
+                    <span class="badge badge-success">Ativo</span>
+                  {% elif equipamento.status == 'Manutenção' %}
+                    <span class="badge badge-warning">Manutenção</span>
+                  {% else %}
+                    <span class="badge badge-danger">Inativo</span>
+                  {% endif %}
+                </td>
+                <td>{{ equipamento.ultima_leitura|date:'d/m/Y' }}</td>
+                <td>
+                  <a href="{% url 'editar_equipamento' equipamento.id %}" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
+
+                  <a href="{% url 'excluir_equipamento' equipamento.id %}" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
+                </td>
+              </tr>
+            {% empty %}
+              <tr>
+                <td colspan="7">Nenhum equipamento cadastrado.</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+{% endblock %}
