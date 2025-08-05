@@ -1,14 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+
 <h2>Editar Leitura</h2>
 <form method="POST">
   {% csrf_token %}
   Data: <input type="date" name="data" value="{{ leitura.data }}"><br>
   Consumo (kWh): <input type="number" step="0.01" name="consumo_kwh" value="{{ leitura.consumo_kwh }}"><br>
   Medidor:
-  <select name="medidor">
-    {% for m in medidores %}
+  <select name="leitura">
+    {% for l in leitura %}
       <option value="{{ m.id }}" {% if m.id == leitura.medidor.id %}selected{% endif %}>{{ m.numero_serie }}</option>
     {% endfor %}
   </select><br>
   <button type="submit">Salvar</button>
 </form>
 <a href="{% url 'lista_leituras' %}">Voltar</a>
+{% endblock %}

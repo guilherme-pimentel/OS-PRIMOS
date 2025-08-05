@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
   <div class="content">
-    <h1 style="margin-bottom: 1.5rem;">Equipamentos</h1>
+    <h1 style="margin-bottom: 1.5rem;">Lista de Equipamentos</h1>
 
     <div class="card">
       <div class="card-header">
         <span>Lista de Equipamentos</span>
-        <a href="{% url 'adicionar_equipamento' %}" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> Adicionar</a>
+        <a href="{% url 'adicionar_equipamento' %}" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i>Adicionar Equipamentos</a>
       </div>
       <div class="card-body">
         <table class="table">
@@ -17,8 +17,9 @@
               <th>Tipo</th>
               <th>Potência (W)</th>
               <th>Status</th>
-              <th>Última Leitura</th>
+              <th>Usuario</th>
               <th>Ações</th>
+             
             </tr>
           </thead>
           <tbody>
@@ -36,13 +37,16 @@
                   {% else %}
                     <span class="badge badge-danger">Inativo</span>
                   {% endif %}
-                </td>
-                <td>{{ equipamento.ultima_leitura|date:'d/m/Y' }}</td>
+                </td> 
                 <td>
-                  <a href="{% url 'editar_equipamento' equipamento.id %}" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
-
-                  <a href="{% url 'excluir_equipamento' equipamento.id %}" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
+                {{ equipamento.usuario.nome }}
                 </td>
+                <td>
+                <a href="{% url 'editar_equipamento' equipamento.id %}" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
+                <a href="{% url 'excluir_equipamento' equipamento.id %}" class="btn btn-sm btn-danger">
+    <i class="fas fa-trash"></i>
+</a>
+</td>
               </tr>
             {% empty %}
               <tr>
