@@ -46,10 +46,7 @@
       <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"><span class="navbar-toggler-icon"></span></button>
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav ms-auto p-4 p-lg-0">
-          <a href="index.html" class="nav-item nav-link active">Início</a>
-          <a href="dashboard.html" class="nav-item nav-link">Dashboard</a>
-          <a href="equipamentos.html" class="nav-item nav-link">Equipamentos</a>
-          <a href="relatorios.html" class="nav-item nav-link">Relatórios</a>
+          <a href="{% url 'lista_equipamentos' %}" class="nav-item nav-link {% if request.path == '/equipamentos/' or 'equipamentos' in request.path %}active{% endif %}">Join Now</a>
         </div>
         <a href="{% url 'lista_equipamentos' %}" class="{% if 'equipamentos' in request.path %}active{% endif %}">
         </a>
@@ -58,211 +55,394 @@
     <!-- Navbar End -->
 
     <!-- Carousel Start -->
-    <div class="container-fluid p-0 mb-5">
-      <div class="owl-carousel header-carousel position-relative">
-        <div class="owl-carousel-item position-relative">
-          <img class="img-fluid" src="{% static 'img/energy1.jpg' %}" alt="Sistema de energia" />
-          <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(24, 29, 56, .7);">
-            <div class="container">
-              <div class="row justify-content-start">
-                <div class="col-sm-10 col-lg-8">
-                  <h5 class="text-primary text-uppercase mb-3 animated slideInDown">Solução Completa</h5>
-                  <h1 class="display-3 text-white animated slideInDown">Gerenciamento Inteligente de Energia</h1>
-                  <p class="fs-5 text-white mb-4 pb-2">Monitore e otimize o consumo de energia da sua empresa com nossa plataforma avançada.</p>
-                  <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Saiba Mais</a>
-                  <a href="" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Demonstração</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="owl-carousel-item position-relative">
-          <img class="img-fluid" src="{% static 'img/energy2.jpg' %}" alt="Monitoramento de energia" />
-          <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(24, 29, 56, .7);">
-            <div class="container">
-              <div class="row justify-content-start">
-                <div class="col-sm-10 col-lg-8">
-                  <h5 class="text-primary text-uppercase mb-3 animated slideInDown">Controle Total</h5>
-                  <h1 class="display-3 text-white animated slideInDown">Reduza Seus Custos Energéticos</h1>
-                  <p class="fs-5 text-white mb-4 pb-2">Identifique oportunidades de economia e melhore a eficiência energética da sua operação.</p>
-                  <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Saiba Mais</a>
-                  <a href="" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Demonstração</a>
-                </div>
-              </div>
+    <style>
+  .owl-carousel-item img {
+    width: 100%;
+    height: 600px; 
+    object-fit: cover; 
+  }
+  .owl-carousel-item .overlay {
+    background: rgba(24, 29, 56, 0); 
+  }
+</style>
+
+<div class="container-fluid p-0 mb-5">
+  <div class="owl-carousel header-carousel position-relative">
+    
+    <div class="owl-carousel-item position-relative">
+      <img class="img-fluid" src="{% static 'img/sistema_energia.jpg' %}" alt="Sistema de energia" />
+      <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center overlay">
+        <div class="container">
+          <div class="row justify-content-start">
+            <div class="col-sm-10 col-lg-8">
+              <h5 class="text-primary text-uppercase mb-3 animated slideInDown">Solução Completa</h5>
+              <h1 class="display-3 text-white animated slideInDown">Gerenciamento Inteligente de Energia</h1>
+              <p class="fs-5 text-white mb-4 pb-2">Monitore e otimize o consumo de energia da sua empresa com nossa plataforma avançada.</p>
+               <a href="{% url 'lista_equipamentos' %}" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft {% if request.path == '/equipamentos/' or 'equipamentos' in request.path %}active{% endif %}">Join Now</a> 
             </div>
           </div>
         </div>
       </div>
     </div>
+
+    <div class="owl-carousel-item position-relative">
+      <img class="img-fluid" src="{% static 'img/sistema_energia2.jpg' %}" alt="Monitoramento de energia" />
+      <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center overlay">
+        <div class="container">
+          <div class="row justify-content-start">
+            <div class="col-sm-10 col-lg-8">
+              <h5 class="text-primary text-uppercase mb-3 animated slideInDown">Controle Total</h5>
+              <h1 class="display-3 text-white animated slideInDown">Reduza Seus Custos Energéticos</h1>
+              <p class="fs-5 text-white mb-4 pb-2">Identifique oportunidades de economia e melhore a eficiência energética da sua operação.</p>
+              <a href="{% url 'lista_equipamentos' %}" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft {% if request.path == '/equipamentos/' or 'equipamentos' in request.path %}active{% endif %}">Join Now</a> 
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
     <!-- Carousel End -->
 
     <!-- Features Start -->
-    <div class="container-xxl py-5">
-      <div class="container">
-        <div class="row g-4">
-          <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-            <div class="service-item text-center pt-3">
-              <div class="p-4">
-                <i class="fa fa-3x fa-chart-line text-primary mb-4"></i>
-                <h5 class="mb-3">Monitoramento em Tempo Real</h5>
-                <p>Acompanhe o consumo de energia de todos os seus equipamentos e setores</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
-            <div class="service-item text-center pt-3">
-              <div class="p-4">
-                <i class="fa fa-3x fa-lightbulb text-primary mb-4"></i>
-                <h5 class="mb-3">Identificação de Economias</h5>
-                <p>Descubra oportunidades para reduzir custos e melhorar eficiência</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
-            <div class="service-item text-center pt-3">
-              <div class="p-4">
-                <i class="fa fa-3x fa-bell text-primary mb-4"></i>
-                <h5 class="mb-3">Alertas Inteligentes</h5>
-                <p>Receba notificações sobre consumos anormais e oportunidades</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
-            <div class="service-item text-center pt-3">
-              <div class="p-4">
-                <i class="fa fa-3x fa-file-alt text-primary mb-4"></i>
-                <h5 class="mb-3">Relatórios Automatizados</h5>
-                <p>Gere relatórios detalhados para análise e tomada de decisão</p>
-              </div>
-            </div>
+    <style>
+  .service-item {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.05);
+    transition: 0.3s;
+    height: 100%;
+  }
+  .service-item:hover {
+    transform: translateY(-5px);
+  }
+  .service-item .p-4 {
+    min-height: 230px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+</style>
+
+<div class="container-xxl py-5">
+  <div class="container">
+    <div class="row g-4">
+      
+      <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="service-item text-center pt-3 h-100">
+          <div class="p-4">
+            <i class="fa fa-3x fa-chart-line text-primary mb-4"></i>
+            <h5 class="mb-3">Monitoramento em Tempo Real</h5>
+            <p>Acompanhe o consumo de energia de todos os seus equipamentos e setores</p>
           </div>
         </div>
       </div>
+
+      <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
+        <div class="service-item text-center pt-3 h-100">
+          <div class="p-4">
+            <i class="fa fa-3x fa-lightbulb text-primary mb-4"></i>
+            <h5 class="mb-3">Identificação de Economias</h5>
+            <p>Descubra oportunidades para reduzir custos e melhorar eficiência</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
+        <div class="service-item text-center pt-3 h-100">
+          <div class="p-4">
+            <i class="fa fa-3x fa-bell text-primary mb-4"></i>
+            <h5 class="mb-3">Alertas Inteligentes</h5>
+            <p>Receba notificações sobre consumos anormais e oportunidades</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
+        <div class="service-item text-center pt-3 h-100">
+          <div class="p-4">
+            <i class="fa fa-3x fa-file-alt text-primary mb-4"></i>
+            <h5 class="mb-3">Relatórios Automatizados</h5>
+            <p>Gere relatórios detalhados para análise e tomada de decisão</p>
+          </div>
+        </div>
+      </div>
+
     </div>
+  </div>
+</div>
+
     <!-- Features End -->
 
-    <!-- Energy Sections Start -->
-    <div class="container-xxl py-5">
-      <div class="container">
-        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-          <h6 class="section-title bg-white text-center text-primary px-3">Setores</h6>
-          <h1 class="mb-5">Áreas de Monitoramento</h1>
-        </div>
-        <div class="row g-3">
-          <div class="col-lg-7 col-md-6">
-            <div class="row g-3">
-              <div class="col-lg-12 col-md-12 wow zoomIn" data-wow-delay="0.1s">
-                <a class="position-relative d-block overflow-hidden" href="">
-                  <img class="img-fluid" src="{% static 'img/industrial.jpg' %}" alt="Setor Industrial" />
-                  <div class="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style="margin: 1px;">
-                    <h5 class="m-0">Industrial</h5>
-                    <small class="text-primary">Maquinários e equipamentos</small>
-                  </div>
-                </a>
-              </div>
-              <div class="col-lg-6 col-md-12 wow zoomIn" data-wow-delay="0.3s">
-                <a class="position-relative d-block overflow-hidden" href="">
-                  <img class="img-fluid" src="{% static 'img/comercial.jpg' %}" alt="Setor Comercial" />
-                  <div class="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style="margin: 1px;">
-                    <h5 class="m-0">Comercial</h5>
-                    <small class="text-primary">Lojas e estabelecimentos</small>
-                  </div>
-                </a>
-              </div>
-              <div class="col-lg-6 col-md-12 wow zoomIn" data-wow-delay="0.5s">
-                <a class="position-relative d-block overflow-hidden" href="">
-                  <img class="img-fluid" src="{% static 'img/residencial.jpg' %}" alt="Setor Residencial" />
-                  <div class="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style="margin: 1px;">
-                    <h5 class="m-0">Residencial</h5>
-                    <small class="text-primary">Condomínios e residências</small>
-                  </div>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-5 col-md-6 wow zoomIn" data-wow-delay="0.7s" style="min-height: 350px;">
-            <a class="position-relative d-block h-100 overflow-hidden" href="">
-              <img class="img-fluid position-absolute w-100 h-100" src="{% static 'img/solar.jpg' %}" alt="Energia Solar" style="object-fit: cover;" />
-              <div class="bg-white text-center position-absolute bottom-0 end-0 py-2 px-3" style="margin:  1px;">
-                <h5 class="m-0">Energia Renovável</h5>
-                <small class="text-primary">Sistemas solares e eólicos</small>
-              </div>
-            </a>
+   <style>
+  .setor-item {
+    background: #f8f9fa;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    transition: 0.3s;
+  }
+
+  .setor-item:hover {
+    transform: translateY(-5px);
+  }
+
+  .setor-img {
+    max-width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @media (min-width: 768px) {
+    .setor-img {
+      height: 180px;
+    }
+  }
+</style>
+
+<div class="container-xxl py-5">
+  <div class="container">
+    <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+      <h6 class="section-title bg-white text-center text-primary px-3">Setores</h6>
+      <h1 class="mb-5">Áreas de Monitoramento</h1>
+    </div>
+
+    <div class="row g-4">
+
+      <!-- Setor Industrial -->
+      <div class="col-lg-6">
+        <div class="d-flex flex-md-row flex-column setor-item">
+          <img src="{% static 'img/setor_industrial.jpg' %}" alt="Setor Industrial" class="setor-img col-md-6">
+          <div class="p-4 d-flex flex-column justify-content-center">
+            <h5>Setor Industrial</h5>
+            <p class="mb-1 text-muted">Maquinários e equipamentos</p>
+            <small class="text-primary">Automação, controle e consumo de fábricas</small>
           </div>
         </div>
       </div>
+
+      <!-- Setor Comercial -->
+      <div class="col-lg-6">
+        <div class="d-flex flex-md-row flex-column setor-item">
+          <img src="{% static 'img/setor_comercial.jpg' %}" alt="Setor Comercial" class="setor-img col-md-6">
+          <div class="p-4 d-flex flex-column justify-content-center">
+            <h5>Setor Comercial</h5>
+            <p class="mb-1 text-muted">Lojas e estabelecimentos</p>
+            <small class="text-primary">Gestão de energia e eficiência para o comércio</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Setor Residencial -->
+      <div class="col-lg-6">
+        <div class="d-flex flex-md-row flex-column setor-item">
+          <img src="{% static 'img/setor_residencial.jpg' %}" alt="Setor Residencial" class="setor-img col-md-6">
+          <div class="p-4 d-flex flex-column justify-content-center">
+            <h5>Setor Residencial</h5>
+            <p class="mb-1 text-muted">Condomínios e residências</p>
+            <small class="text-primary">Monitoramento individual e coletivo de consumo</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Energia Renovável -->
+      <div class="col-lg-6">
+        <div class="d-flex flex-md-row flex-column setor-item">
+          <img src="{% static 'img/energia_solar.jpg' %}" alt="Energia Solar" class="setor-img col-md-6">
+          <div class="p-4 d-flex flex-column justify-content-center">
+            <h5>Energia Renovável</h5>
+            <p class="mb-1 text-muted">Sistemas solares</p>
+            <small class="text-primary">Painéis fotovoltaicos, inversores e baterias</small>
+          </div>
+        </div>
+      </div>
+
     </div>
+  </div>
+</div>
+
     <!-- Energy Sections End -->
 
     <!-- Equipment Start -->
-    <div class="container-xxl py-5">
-      <div class="container">
-        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-          <h6 class="section-title bg-white text-center text-primary px-3">Equipamentos</h6>
-          <h1 class="mb-5">Principais Dispositivos Monitorados</h1>
-        </div>
-        <div class="row g-4 justify-content-center">
-          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-            <div class="course-item bg-light">
-              <div class="position-relative overflow-hidden">
-                <img class="img-fluid" src="{% static 'img/medidor.jpg' %}" alt="Medidores de Energia" />
-                <div class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
-                  <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3" style="border-radius: 30px;">Detalhes</a>
-                </div>
-              </div>
-              <div class="text-center p-4 pb-0">
-                <h5 class="mb-4">Medidores Inteligentes</h5>
-                <p>Monitoramento preciso do consumo em tempo real</p>
-              </div>
-              <div class="d-flex border-top">
-                <small class="flex-fill text-center border-end py-2"><i class="fa fa-bolt text-primary me-2"></i>Precisão</small>
-                <small class="flex-fill text-center border-end py-2"><i class="fa fa-clock text-primary me-2"></i>Tempo Real</small>
-                <small class="flex-fill text-center py-2"><i class="fa fa-chart-line text-primary me-2"></i>Análise</small>
-              </div>
-            </div>
+    <style>
+.course-item {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.course-item img {
+  width: 100%;
+  height: 200px; 
+  object-fit: cover; 
+}
+
+.course-item .text-center {
+  flex: 1; 
+}
+
+.course-item .d-flex.border-top {
+  margin-top: auto; 
+}
+</style>
+
+<div class="container-xxl py-5">
+  <div class="container">
+    <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+      <h6 class="section-title bg-white text-center text-primary px-3">Sistema</h6>
+      <h1 class="mb-5">Monitoramentos</h1>
+    </div>
+    <div class="row g-4 justify-content-center">
+
+      <!-- Card 1 -->
+      <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="course-item bg-light">
+          <img src="{% static 'img/fatura.jpg' %}" alt="Faturas" />
+          <div class="d-flex justify-content-center my-3">
+            <a href="#" class="btn btn-sm btn-primary px-3" style="border-radius: 30px;">Detalhes</a>
           </div>
-          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-            <div class="course-item bg-light">
-              <div class="position-relative overflow-hidden">
-                <img class="img-fluid" src="{% static 'img/sensor.jpg' %}" alt="Sensores" />
-                <div class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
-                  <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3" style="border-radius: 30px;">Detalhes</a>
-                </div>
-              </div>
-              <div class="text-center p-4 pb-0">
-                <h5 class="mb-4">Sensores IoT</h5>
-                <p>Coleta de dados de diversos pontos da instalação</p>
-              </div>
-              <div class="d-flex border-top">
-                <small class="flex-fill text-center border-end py-2"><i class="fa fa-wifi text-primary me-2"></i>Conectividade</small>
-                <small class="flex-fill text-center border-end py-2"><i class="fa fa-microchip text-primary me-2"></i>Tecnologia</small>
-                <small class="flex-fill text-center py-2"><i class="fa fa-database text-primary me-2"></i>Dados</small>
-              </div>
-            </div>
+          <div class="text-center p-4 pb-0">
+            <h5 class="mb-4">Faturas</h5>
+            <p>Veja as faturas dentro do Sistema </p>
           </div>
-          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-            <div class="course-item bg-light">
-              <div class="position-relative overflow-hidden">
-                <img class="img-fluid" src="{% static 'img/controlador.jpg' %}" alt="Controladores" />
-                <div class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
-                  <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3" style="border-radius: 30px;">Detalhes</a>
-                </div>
-              </div>
-              <div class="text-center p-4 pb-0">
-                <h5 class="mb-4">Controladores</h5>
-                <p>Automação e gestão inteligente de dispositivos</p>
-              </div>
-              <div class="d-flex border-top">
-                <small class="flex-fill text-center border-end py-2"><i class="fa fa-robot text-primary me-2"></i>Automação</small>
-                <small class="flex-fill text-center border-end py-2"><i class="fa fa-cogs text-primary me-2"></i>Controle</small>
-                <small class="flex-fill text-center py-2"><i class="fa fa-sliders-h text-primary me-2"></i>Gestão</small>
-              </div>
-            </div>
+          <div class="d-flex border-top">
+            <small class="flex-fill text-center border-end py-2"><i class="fa fa-bolt text-primary me-2"></i>Precisão</small>
+            <small class="flex-fill text-center border-end py-2"><i class="fa fa-clock text-primary me-2"></i>Tempo Real</small>
+            <small class="flex-fill text-center py-2"><i class="fa fa-chart-line text-primary me-2"></i>Análise</small>
           </div>
         </div>
       </div>
+
+      <!-- Card 2 -->
+      <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+        <div class="course-item bg-light">
+          <img src="{% static 'img/usuario.jpg' %}" alt="Usuarios" />
+          <div class="d-flex justify-content-center my-3">
+            <a href="#" class="btn btn-sm btn-primary px-3" style="border-radius: 30px;">Detalhes</a>
+          </div>
+          <div class="text-center p-4 pb-0">
+            <h5 class="mb-4">Usuarios</h5>
+            <p>Dados dos usuarios do Sistema</p>
+          </div>
+          <div class="d-flex border-top">
+            <small class="flex-fill text-center border-end py-2"><i class="fa fa-wifi text-primary me-2"></i>Conectividade</small>
+            <small class="flex-fill text-center border-end py-2"><i class="fa fa-microchip text-primary me-2"></i>Tecnologia</small>
+            <small class="flex-fill text-center py-2"><i class="fa fa-database text-primary me-2"></i>Dados</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+        <div class="course-item bg-light">
+          <img src="{% static 'img/equipamento.jpg' %}" alt="Equipamentos" />
+          <div class="d-flex justify-content-center my-3">
+            <a href="#" class="btn btn-sm btn-primary px-3" style="border-radius: 30px;">Detalhes</a>
+          </div>
+          <div class="text-center p-4 pb-0">
+            <h5 class="mb-4">Equipamentos</h5>
+            <p>Equipamentos que temos no Sistema</p>
+          </div>
+          <div class="d-flex border-top">
+            <small class="flex-fill text-center border-end py-2"><i class="fa fa-robot text-primary me-2"></i>Automação</small>
+            <small class="flex-fill text-center border-end py-2"><i class="fa fa-cogs text-primary me-2"></i>Controle</small>
+            <small class="flex-fill text-center py-2"><i class="fa fa-sliders-h text-primary me-2"></i>Gestão</small>
+          </div>
+        </div>
+      </div>
+
     </div>
+  </div>
+</div>
+
+    
     <!-- Equipment End -->
+    <!-- Team Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h6 class="section-title bg-white text-center text-primary px-3">Criadores</h6>
+                <h1 class="mb-5">Expert Instrutores</h1>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="team-item bg-light">
+                        <div class="overflow-hidden">
+                            <img class="img-fluid" src="static/img/team-1.jpg" alt="">
+                        </div>
+                        <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
+                            <div class="bg-light d-flex justify-content-center pt-2 px-1">
+                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                        <div class="text-center p-4">
+                            <h5 class="mb-0">Criadores do Sistema</h5>
+                            <small>Designação</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="team-item bg-light">
+                        <div class="overflow-hidden">
+                            <img class="img-fluid" src="static/img/team-2.jpg" alt="">
+                        </div>
+                        <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
+                            <div class="bg-light d-flex justify-content-center pt-2 px-1">
+                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                        <div class="text-center p-4">
+                            <h5 class="mb-0">Criadores do Sistema</h5>
+                            <small>Designação</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="team-item bg-light">
+                        <div class="overflow-hidden">
+                            <img class="img-fluid" src="static/img/team-3.jpg" alt="">
+                        </div>
+                        <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
+                            <div class="bg-light d-flex justify-content-center pt-2 px-1">
+                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                        <div class="text-center p-4">
+                            <h5 class="mb-0">Criadores do Sistema</h5>
+                            <small>Designação</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
+                    <div class="team-item bg-light">
+                        <div class="overflow-hidden">
+                            <img class="img-fluid" src="static/img/team-4.jpg" alt="">
+                        </div>
+                        <div class="position-relative d-flex justify-content-center" style="margin-top: -23px;">
+                            <div class="bg-light d-flex justify-content-center pt-2 px-1">
+                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-sm-square btn-primary mx-1" href=""><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                        <div class="text-center p-4">
+                            <h5 class="mb-0">Criadores do Sistema</h5>
+                            <small>Designação</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Team End -->
 
     <!-- Footer Start -->
     <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">

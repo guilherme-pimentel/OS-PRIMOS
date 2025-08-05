@@ -1,33 +1,30 @@
 {% extends 'base.html' %}
 {% block content %}
-  <h1 style="margin-bottom: 1.5rem;">Lista de Medidores</h1>
+  <h1 style="margin-bottom: 1.5rem;">Lista de Usuarios</h1>
 
   <div class="card">
     <div class="card-header">
       <span>Medidores Cadastrados</span>
-      <a href="{% url 'adicionar_medidor' %}" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> Adicionar Medidor</a>
+      <a href="{% url 'adicionar_usuario' %}" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> Adicionar Usuario</a>
     </div>
     <div class="card-body">
       <table class="table">
         <thead>
           <tr>
-            <th>Número de Série</th>
-            <th>Localização</th>
-            <th>Data de Instalação</th>
-            <th>Usuário</th>
-            <th>Ações</th>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Endereço</th>
           </tr>
         </thead>
         <tbody>
-          {% for m in medidores %}
+          {% for u in usuarios %}
             <tr>
-              <td>{{ m.numero_serie }}</td>
-              <td>{{ m.localizacao }}</td>
-              <td>{{ m.data_instalacao }}</td>
-              <td>{{ m.usuario.nome }}</td>
+              <td>{{ u.nome }}</td>
+              <td>{{ u.email }}</td>
+              <td>{{ u.endereco }}</td>
               <td>
-                <a href="{% url 'editar_medidor' m.id %}" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
-                <a href="{% url 'excluir_medidor' m.id %}" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
+                <a href="{% url 'editar_usuario' u.id %}" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
+                <a href="{% url 'excluir_usuario' u.id %}" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
               </td>
             </tr>
           {% endfor %}
