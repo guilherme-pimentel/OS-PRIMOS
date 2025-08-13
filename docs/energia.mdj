@@ -42,7 +42,7 @@ class "Matricula" {
 }
 
 class "Fatura" {
-    -matricla:Matricula
+    -matricula: Matricula
     - valor: Float
     -data:date
     - data_vencimento: Date
