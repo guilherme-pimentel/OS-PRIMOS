@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Detalhes da Avaliação</h2>
+<p><strong>Aluno:</strong> {{ avaliacao.matricula.aluno.username }}</p>
+<p><strong>Atividade:</strong>
+    {% for atv in avaliacao.matricula.atividade.all %}
+        {{ atv.nome }}{% if not forloop.last %}, {% endif %}
+    {% endfor %}
+</p>
+<p><strong>Peso:</strong> {{ avaliacao.peso }} kg</p>
+<p><strong>Altura:</strong> {{ avaliacao.altura }} cm</p>
+<p><strong>Avaliador:</strong>  {{ avaliacao.avaliador.username }}</p>
+<a href="{% url 'editar_avaliacao' avaliacao.id %}" class="btn btn-warning">Editar</a>
+<a href="{% url 'lista_avaliacao' %}" class="btn btn-secondary">Voltar</a>
+{% endblock %}

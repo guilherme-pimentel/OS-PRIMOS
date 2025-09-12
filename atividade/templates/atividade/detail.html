@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Detalhes da Atividade</h2>
+<p><strong>Nome:</strong> {{ atividade.nome }}</p>
+<p><strong>Horário:</strong> {{ atividade.hora }}</p>
+<p><strong>Responsável:</strong> {{ atividade.funcionario.username }}</p>
+<a href="{% url 'editar_atividade' atividade.id %}" class="btn btn-warning">Editar</a>
+<a href="{% url 'lista_atividades' %}" class="btn btn-secondary">Voltar</a>
+{% endblock %}

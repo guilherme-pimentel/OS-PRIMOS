@@ -1,0 +1,891 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+    <head>
+        <meta charset="utf-8">
+        <title>Academia Manager - Sistema de Gestão para Academias</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="" name="keywords">
+        <meta content="" name="description">
+
+      
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Teko:wght@300..700&display=swap" rel="stylesheet">
+
+      
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    
+        <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+        <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+
+
+        
+        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+        
+        <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+    </head>
+
+    <body>
+
+       
+        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Carregando...</span>
+            </div>
+        </div>
+        
+        <div class="container-fluid header-top">
+            <div class="nav-shaps-2"></div>
+            <div class="container d-flex align-items-center">
+                <div class="d-flex align-items-center h-100">
+                    <a href="#" class="navbar-brand" style="height: 125px;">
+                        <h1 class="text-primary mb-0"><i class="fas fa-dumbbell me-2"></i> Academia Manager</h1>
+                        
+                    </a>
+                </div>
+                <div class="w-100 h-100">
+                    <div class="topbar px-0 py-2 d-none d-lg-block" style="height: 45px;">
+                        <div class="row gx-0 align-items-center">
+                            <div class="col-lg-8 text-center text-lg-center mb-lg-0">
+                                <div class="d-flex flex-wrap">
+                                    <div class="pe-4">
+                                        <a href="mailto:contato@academiamanager.com" class="text-muted small"><i class="fas fa-envelope text-primary me-2"></i>contato@academiamanager.com</a>
+                                    </div>
+                                    <div class="pe-0">
+                                        <a href="mailto:example@gmail.com" class="text-muted small"><i class="fa fa-clock text-primary me-2"></i>Seg - Sáb: 6:00 - 22:00</a>
+                                    </div>
+                                </div>
+                            </div>
+                           <div class="col-lg-4 text-center text-lg-end">
+    <div class="d-flex justify-content-end">
+        <div class="d-flex align-items-center small">
+            <a href="{% url 'login' %}" class="login-btn text-body me-3 pe-3"> <span>Entrar</span></a>
+            <a href="{% url 'register' %}" class="text-body me-3"> Cadastrar</a>
+        </div>
+        <div class="d-flex pe-3">
+            <a class="btn p-0 text-primary me-3" href="#"><i class="fab fa-facebook-f"></i></a>
+            <a class="btn p-0 text-primary me-3" href="#"><i class="fab fa-instagram"></i></a>
+            <a class="btn p-0 text-primary me-0" href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+    </div>
+</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="nav-bar px-0 py-lg-0" style="height: 80px;">
+                        <nav class="navbar navbar-expand-lg navbar-light d-flex justify-content-lg-end">
+                            <a href="#" class="navbar-brand-2">
+                                <h1 class="text-primary mb-0"><i class="fas fa-dumbbell me-2"></i> Academia Manager</h1>
+                                
+                            </a> 
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                                <span class="fa fa-bars"></span>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbarCollapse">
+                                <div class="navbar-nav mx-0 mx-lg-auto">
+                                    <a href="#" class="nav-item nav-link active">Início</a>
+                                    <div class="nav-btn ps-3">
+                                        <button class="btn-search btn btn-primary btn-md-square mt-2 mt-lg-0 mb-4 mb-lg-0 flex-shrink-0" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fas fa-search"></i></button>
+                                        <a href="#" class="btn btn-primary py-2 px-4 ms-0 ms-lg-3"> <span>Demonstração</span></a>
+                                    </div>
+                                    <div class="nav-shaps-1"></div>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+      
+        <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-fullscreen">
+                <div class="modal-content rounded-0">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Pesquisar por palavra-chave</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body d-flex align-items-center bg-primary">
+                        <div class="input-group w-75 mx-auto d-flex">
+                            <input type="search" class="form-control p-3" placeholder="palavras-chave" aria-describedby="search-icon-1">
+                            <span id="search-icon-1" class="btn bg-light border nput-group-text p-3"><i class="fa fa-search"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="header-carousel owl-carousel overflow-hidden bg-dark">
+            <div class="header-carousel-item hero-section">
+                <div class="hero-bg-half-1"></div>
+                <div class="carousel-caption">
+                    <div class="container">
+                        <div class="row g-4 align-items-center">
+                            <div class="col-lg-7 animated fadeInLeft">
+                                <div class="text-sm-center text-md-start">
+                                    <h4 class="text-primary text-uppercase fw-bold mb-4">Bem-vindo ao Academia Manager</h4>
+                                    <h1 class="display-1 text-white mb-4">Sistema completo para gestão de academias</h1>
+                                    <p class="mb-5 fs-5">Controle alunos, pagamentos, treinos e muito mais com nossa plataforma completa e intuitiva. 
+                                    </p>
+                                    <div class="d-flex justify-content-center justify-content-md-start flex-shrink-0 mb-4">
+                                        <a class="btn btn-primary py-3 px-4 px-md-5 ms-2" href="{% url 'lista_funcionarios' %}"><span>Saiba Mais</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="header-carousel-item hero-section">
+                <div class="hero-bg-half-2"></div>
+                <div class="carousel-caption">
+                    <div class="container">
+                        <div class="row g-4 align-items-center">
+                            <div class="col-lg-7 animated fadeInLeft">
+                                <div class="text-sm-center text-md-start">
+                                    <h4 class="text-primary text-uppercase fw-bold mb-4">Sistema Integrado</h4>
+                                    <h1 class="display-2 text-white mb-4">Gerencie sua academia com eficiência e precisão</h1>
+                                    <p class="mb-5 fs-5">Tenha controle total sobre finanças, frequência de alunos, estoque e muito mais em uma única plataforma. 
+                                    </p>
+                                    <div class="d-flex justify-content-center justify-content-md-start flex-shrink-0 mb-4">
+                                        <a class="btn btn-primary py-3 px-4 px-md-5 ms-2" href="{% url 'lista_funcionarios' %}"><span>Conhecer Sistema</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+        <div class="container-fluid about pt-5">
+            <div class="container pt-5">
+                <div class="row g-5">
+                    <div class="col-xl-6 wow fadeInLeft" data-wow-delay="0.2s">
+                        <div class="about-content h-100">
+                            <h4 class="text-primary">Sobre o Academia Manager</h4>
+                            <h1 class="display-4 text-white mb-4">Solução completa para gestão do seu negócio fitness</h1>
+                            <p class="mb-4">Desenvolvemos um sistema completo que facilita o gerenciamento diário da sua academia, permitindo que você foque no que realmente importa: o crescimento do seu negócio.</p>
+                            <div class="tab-class pb-4">
+                                <ul class="nav d-flex mb-2">
+                                    <li class="nav-item mb-3">
+                                        <a class="d-flex py-2 active" data-bs-toggle="pill" href="#tab-1">
+                                            <span style="width: 150px;">Nossa Missão</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item mb-3">
+                                        <a class="d-flex py-2 mx-3" data-bs-toggle="pill" href="#tab-2">
+                                            <span style="width: 150px;">Nossa Visão</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item mb-3">
+                                        <a class="d-flex py-2" data-bs-toggle="pill" href="#tab-3">
+                                            <span style="width: 150px;">Nosso Valor</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div id="tab-1" class="tab-pane fade show p-0 active">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="d-flex align-items-center border-top border-bottom py-4">
+                                                    <span class="fas fa-bullseye text-white fa-4x me-4"></span>
+                                                    <p class="mb-0">Nossa missão é simplificar a gestão de academias através de tecnologia inovadora, permitindo que nossos clientes tenham mais tempo para focar no atendimento de qualidade e no crescimento do seu negócio.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="tab-2" class="tab-pane fade show p-0">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="d-flex align-items-center border-top border-bottom py-4">
+                                                    <span class="fas fa-eye text-white fa-4x me-4"></span>
+                                                    <p class="mb-0">Ser referência em soluções de gestão para o segmento fitness, contribuindo para o sucesso de milhares de academias em todo o país através da inovação tecnológica e suporte especializado.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="tab-3" class="tab-pane fade show p-0">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="d-flex align-items-center border-top border-bottom py-4">
+                                                    <span class="fas fa-hand-holding-heart text-white fa-4x me-4"></span>
+                                                    <p class="mb-0">Valorizamos a transparência, a inovação constante, o compromisso com resultados e o relacionamento próximo com nossos clientes, entendendo suas necessidades para oferecer sempre a melhor solução.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row g-4 align-items-center">
+                                <div class="col-sm-6">
+                                    <a href="#" class="btn btn-primary py-3 px-5"> <span>Solicitar Demonstração</span></a>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="d-flex flex-shrink-0 ps-4">
+                                        <a href="#" class="btn btn-light btn-lg-square position-relative wow tada" data-wow-delay=".9s">
+                                            <i class="fa fa-phone-alt fa-2x"></i>
+                                            <div class="position-absolute" style="top: 5px; right: 5px;">
+                                                <span><i class="fa fa-comment-dots text-dark"></i></span>
+                                            </div>
+                                        </a>
+                                        <div class="d-flex flex-column ms-3">
+                                            <span>Fale com Nossos Especialistas</span>
+                                            <a href="tel:+551199999999"><span class="text-white">(11) 9999-9999</span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="about-img h-100">
+                            <div class="about-img-inner d-flex h-100">
+                                <img src="{% static 'img/about-2.png' %}" class="img-fluid w-100" style="object-fit: cover;" alt="Sistema Academia Manager">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container-fluid goal pt-5">
+            <div class="container pt-5">
+                <div class="row g-5">
+                    <div class="col-lg-6 wow fadeInLeft" data-wow-delay="0.2s">
+                        <div class="goal-content">
+                            <h4 class="text-primary">Funcionalidades</h4>
+                            <h1 class="display-4 mb-4">Tudo que você precisa para gerenciar sua academia</h1>
+                            <div class="goal-item d-flex p-4">
+                                <div class="d-flex me-4">
+                                    <div class="bg-primary d-inline p-3" style="width: 80px; height: 80px;">
+                                        <img src="{% static 'img/icon-1.png' %}" class="img-fluid" alt="Controle de Alunos">
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4>Controle de Alunos</h4>
+                                    <p class="text-white mb-0">Gerencie fichas, frequência, avaliações físicas e histórico completo de cada aluno.</p>
+                                </div>
+                            </div>
+                            <div class="goal-item d-flex p-4 mb-4">
+                                <div class="d-flex me-4">
+                                    <div class="bg-primary d-inline p-3" style="width: 80px; height: 80px;">
+                                        <img src="{% static 'img/icon-6.png' %}" class="img-fluid" alt="Gestão Financeira">
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4>Gestão Financeira</h4>
+                                    <p class="text-white mb-0">Controle mensalidades, pagamentos, inadimplência e fluxo de caixa com relatórios detalhados.</p>
+                                </div>
+                            </div>
+                            <div class="ms-1">
+                                <a href="#" class="btn btn-primary py-3 px-5 ms-2"> <span>Ver Todas as Funcionalidades</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 wow fadeInRight" data-wow-delay="0.2s">
+                        <div class="h-100">
+                             <img src="{% static 'img/fitness-goal-banner.png' %}" class="img-fluid h-100" style="object-fit: cover;" alt="Funcionalidades Academia Manager">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container-fluid feature bg-light py-5">
+            <div class="container py-5">
+                <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
+                    <h4 class="text-primary"> Por que escolher o Academia Manager?</h4>
+                    <h1 class="display-4 mb-4">Vantagens exclusivas para o seu negócio</h1>
+                    <p class="mb-0">Desenvolvemos uma solução completa que atende às necessidades específicas do segmento fitness, com foco em praticidade, eficiência e resultados.
+                    </p>
+                </div>
+                <div class="feature-carousel owl-carousel">
+                    <div class="feature-item wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="feature-img">
+                            <img src="{% static 'img/feature-1.jpg' %}" class="img-fluid w-100"  alt="Interface Intuitiva">
+                        </div>
+                        <div class="feature-content p-4">
+                            <h4 class="mb-3">Interface Intuitiva</h4>
+                            <p class="mb-4">Sistema fácil de usar, com design moderno e navegação simplificada para maior produtividade.
+                            </p>
+                            <a href="#" class="btn btn-primary py-2 px-4"> <span>Saiba Mais</span></a>
+                        </div>
+                    </div>
+                    <div class="feature-item wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="feature-img">
+                            <img src="{% static 'img/feature-2.jpg' %}" class="img-fluid w-100"  alt="Relatórios Detalhados">
+                        </div>
+                        <div class="feature-content p-4">
+                            <h4 class="mb-3">Relatórios Detalhados</h4>
+                            <p class="mb-4">Acesso a dados estratégicos para tomada de decisão com relatórios personalizáveis.
+                            </p>
+                            <a href="#" class="btn btn-primary py-2 px-4"> <span>Saiba Mais</span></a>
+                        </div>
+                    </div>
+                    <div class="feature-item wow fadeInUp" data-wow-delay="0.6s">
+                        <div class="feature-img">
+                            <img src="{% static 'img/feature-3.jpg' %}" class="img-fluid w-100"  alt="App Integrado">
+                        </div>
+                        <div class="feature-content p-4">
+                            <h4 class="mb-3">App Integrado</h4>
+                            <p class="mb-4">Aplicativo mobile para alunos e professores, integrado ao sistema principal.
+                            </p>
+                            <a href="#" class="btn btn-primary py-2 px-4"> <span>Saiba Mais</span></a>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-img">
+                            <img src="{% static 'img/feature-4.jpg' %}" class="img-fluid w-100"  alt="Suporte Especializado">
+                        </div>
+                        <div class="feature-content p-4">
+                            <h4 class="mb-3">Suporte Especializado</h4>
+                            <p class="mb-4">Equipe técnica preparada para auxiliar no que for necessário, com rápido tempo de resposta.
+                            </p>
+                            <a href="#" class="btn btn-primary py-2 px-4"> <span>Saiba Mais</span></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-shaps"></div>
+            </div>
+        </div>
+        
+        <div class="container-fluid courses overflow-hidden py-5">
+            <div class="container py-5">
+                <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
+                    <h4 class="text-primary"> Módulos do Sistema</h4>
+                    <h1 class="display-4 text-white mb-4">Funcionalidades completas para sua academia</h1>
+                    <p class="text-white mb-0">Oferecemos um sistema modular que pode ser personalizado de acordo com as necessidades específicas do seu negócio, garantindo que você pague apenas pelo que realmente vai utilizar.
+                    </p>
+                </div>
+                <div class="row gy-4 gx-0 justify-content-center">
+                    <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="courses-item">
+                            <div class="courses-item-inner p-4">
+                                <div class="d-flex justify-content-between mb-4">
+                                    <div class="courses-icon-img p-3">
+                                        <img src="{% static 'img/icon-1.png' %}" class="img-fluid" alt="Gestão de Alunos">
+                                    </div>
+                                    <div class="data-info d-flex flex-column">
+                                        <div class="courses-trainer d-flex align-items-center mb-1">
+                                            <div class="me-2" style="width: 25px; height: 25px;">
+                                                <img src="{% static 'img/testimonial-3.jpg' %}" class="img-fluid" alt="">
+                                            </div>
+                                            <p class="mb-0">Módulo Principal</p>
+                                        </div>
+                                        <div class="courses-date">
+                                            <p class="mb-1">Disponível em: Todos os planos</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="#" class="d-inline-block h4 mb-3"> Gestão de Alunos</a>
+                                <p class="mb-4">Controle completo de cadastro, fichas de treino, avaliações físicas e histórico de frequência.
+                                </p>
+                                <a href="#" class="btn btn-primary py-2 px-4"> <span>Detalhes</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="courses-item">
+                            <div class="courses-item-inner p-4">
+                                <div class="d-flex justify-content-between mb-4">
+                                    <div class="courses-icon-img p-3">
+                                        <img src="{% static 'img/icon-2.png'%}" class="img-fluid" alt="Gestão Financeira">
+                                    </div>
+                                    <div class="data-info d-flex flex-column">
+                                        <div class="courses-trainer d-flex align-items-center mb-1">
+                                            <div class="me-2" style="width: 25px; height: 25px;">
+                                                <img src="{% static 'img/testimonial-3.jpg'%}" class="img-fluid" alt="">
+                                            </div>
+                                            <p class="mb-0">Módulo Avançado</p>
+                                        </div>
+                                        <div class="courses-date">
+                                            <p class="mb-1">Disponível em: Planos Premium</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="#" class="d-inline-block h4 mb-3"> Gestão Financeira</a>
+                                <p class="mb-4">Controle de mensalidades, pagamentos, fluxo de caixa, relatórios financeiros e muito mais.
+                                </p>
+                                <a href="#" class="btn btn-primary py-2 px-4"> <span>Detalhes</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.6s">
+                        <div class="courses-item">
+                            <div class="courses-item-inner p-4">
+                                <div class="d-flex justify-content-between mb-4">
+                                    <div class="courses-icon-img p-3">
+                                        <img src="{% static 'img/icon-3.png'%}" class="img-fluid" alt="Controle de Estoque">
+                                    </div>
+                                    <div class="data-info d-flex flex-column">
+                                        <div class="courses-trainer d-flex align-items-center mb-1">
+                                            <div class="me-2" style="width: 25px; height: 25px;">
+                                                <img src="{% static 'img/testimonial-3.jpg'%}" class="img-fluid" alt="">
+                                            </div>
+                                            <p class="mb-0">Módulo Complementar</p>
+                                        </div>
+                                        <div class="courses-date">
+                                            <p class="mb-1">Disponível em: Planos Completos</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="#" class="d-inline-block h4 mb-3"> Controle de Estoque</a>
+                                <p class="mb-4">Gestão de produtos, suplementos, controle de entradas e saídas e alertas de reposição.
+                                </p>
+                                <a href="#" class="btn btn-primary py-2 px-4"> <span>Detalhes</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="courses-item">
+                            <div class="courses-item-inner p-4">
+                                <div class="d-flex justify-content-between mb-4">
+                                    <div class="courses-icon-img p-3">
+                                        <img src="{% static 'img/icon-4.png' %}" class="img-fluid" alt="Agendamento">
+                                    </div>
+                                    <div class="data-info d-flex flex-column">
+                                        <div class="courses-trainer d-flex align-items-center mb-1">
+                                            <div class="me-2" style="width: 25px; height: 25px;">
+                                                <img src="{% static 'img/testimonial-3.jpg'%}" class="img-fluid" alt="">
+                                            </div>
+                                            <p class="mb-0">Módulo Opcional</p>
+                                        </div>
+                                        <div class="courses-date">
+                                            <p class="mb-1">Disponível como: Add-on</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="#" class="d-inline-block h4 mb-3"> Agendamento de Aulas</a>
+                                
+                                <p class="mb-4">Controle de turmas, horários, lotação e agendamento online para seus alunos.
+                                </p>
+                                <a href="#" class="btn btn-primary py-2 px-4"> <span>Detalhes</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="courses-item">
+                            <div class="courses-item-inner p-4">
+                                <div class="d-flex justify-content-between mb-4">
+                                    <div class="courses-icon-img p-3">
+                                        <img src="{% static 'img/icon-5.png' %}" class="img-fluid" alt="App Mobile">
+                                    </div>
+                                    <div class="data-info d-flex flex-column">
+                                        <div class="courses-trainer d-flex align-items-center mb-1">
+                                            <div class="me-2" style="width: 25px; height: 25px;">
+                                                <img src="{% static 'img/testimonial-3.jpg'%}" class="img-fluid" alt="">
+                                            </div>
+                                            <p class="mb-0">Módulo Premium</p>
+                                        </div>
+                                        <div class="courses-date">
+                                            <p class="mb-1">Disponível em: Planos Enterprise</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="#" class="d-inline-block h4 mb-3"> App Mobile</a>
+                                <p class="mb-4">Aplicativo para alunos e professores com acesso a treinos, agendamentos e comunicados.
+                                </p>
+                                <a href="#" class="btn btn-primary py-2 px-4"> <span>Detalhes</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.6s">
+                        <div class="courses-item">
+                            <div class="courses-item-inner p-4">
+                                <div class="d-flex justify-content-between mb-4">
+                                    <div class="courses-icon-img p-3">
+                                        <img src="{% static 'img/icon-6.png'%}" class="img-fluid" alt="BI e Relatórios">
+                                    </div>
+                                    <div class="data-info d-flex flex-column">
+                                        <div class="courses-trainer d-flex align-items-center mb-1">
+                                            <div class="me-2" style="width: 25px; height: 25px;">
+                                                <img src="{% static 'img/testimonial-3.jpg'%}" class="img-fluid" alt="">
+                                            </div>
+                                            <p class="mb-0">Módulo Business</p>
+                                        </div>
+                                        <div class="courses-date">
+                                            <p class="mb-1">Disponível em: Planos Corporativos</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="#" class="d-inline-block h4 mb-3"> BI e Relatórios Avançados</a>
+                                <p class="mb-4">Business Intelligence com dashboards interativos e relatórios personalizados para análise estratégica.
+                                </p>
+                                <a href="#" class="btn btn-primary py-2 px-4"> <span>Detalhes</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.2s">
+                        <a href="#" class="btn btn-primary py-3 px-5"> <span>Ver Todos os Módulos</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+        <div class="container-fluid blog py-5">
+            <div class="container py-5">
+                <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
+                    <h4 class="text-primary">  Nosso Blog</h4>
+                    <h1 class="display-4 mb-4">Confira as últimas novidades e dicas</h1>
+                    <p class="mb-0">Mantenha-se atualizado com as melhores práticas de gestão, tendências do mercado fitness e novidades do nosso sistema.
+                    </p>
+                </div>
+                <div class="blog-carousel owl-carousel">
+                    <div class="blog-item wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="blog-img p-4 pb-0">
+                            <a href="#">
+                                <img src="{% static 'img/feature-4.jpg'%}" class="img-fluid w-100" alt="Como aumentar a retenção de alunos">
+                            </a>
+                        </div>
+                        <div class="blog-content p-4">
+                            <div class="blog-comment d-flex justify-content-between py-2 px-3 mb-4">
+                                <div class="small"><span class="fa fa-user text-primary me-2"></span> Equipe AM</div>
+                                <div class="small"><span class="fa fa-calendar text-primary me-2"></span> 15 Jan 2024</div>
+                            </div>
+                            <a href="#" class="h4 d-inline-block mb-3">5 Estratégias para Aumentar a Retenção de Alunos</a>
+                            <p class="mb-3">Descubra técnicas eficazes para reduzir a evasão e fidelizar seus alunos por mais tempo.</p>
+                            <a href="#" class="btn btn-dark py-2 px-4 ms-2"> <span class="me-2">Ler Mais</span>  <i class="fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="blog-item wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="blog-img p-4 pb-0">
+                            <a href="#">
+                                <img src="{% static 'img/feature-3.jpg' %}" class="img-fluid w-100" alt="Tendências fitness 2024">
+                            </a>
+                        </div>
+                        <div class="blog-content p-4">
+                            <div class="blog-comment d-flex justify-content-between py-2 px-3 mb-4">
+                                <div class="small"><span class="fa fa-user text-primary me-2"></span> Equipe AM</div>
+                                <div class="small"><span class="fa fa-calendar text-primary me-2"></span> 08 Jan 2024</div>
+                            </div>
+                            <a href="#" class="h4 d-inline-block mb-3">Tendências Fitness para 2024: O Que Sua Academia Precisa Oferecer</a>
+                            <p class="mb-3">Fique por dentro das novidades que vão dominar o mercado fitness neste ano.</p>
+                            <a href="#" class="btn btn-dark py-2 px-4 ms-2"> <span class="me-2">Ler Mais</span>  <i class="fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="blog-item wow fadeInUp" data-wow-delay="0.6s">
+                        <div class="blog-img p-4 pb-0">
+                            <a href="#">
+                                <img src="{% static 'img/feature-2.jpg'%}" class="img-fluid w-100" alt="Gestão financeira para academias">
+                            </a>
+                        </div>
+                        <div class="blog-content p-4">
+                            <div class="blog-comment d-flex justify-content-between py-2 px-3 mb-4">
+                                <div class="small"><span class="fa fa-user text-primary me-2"></span> Equipe AM</div>
+                                <div class="small"><span class="fa fa-calendar text-primary me-2"></span> 02 Jan 2024</div>
+                            </div>
+                            <a href="#" class="h4 d-inline-block mb-3">Como Melhorar a Gestão Financeira da Sua Academia</a>
+                            <p class="mb-3">Dicas práticas para organizar as finanças e aumentar a lucratividade do seu negócio.</p>
+                            <a href="#" class="btn btn-dark py-2 px-4 ms-2"> <span class="me-2">Ler Mais</span>  <i class="fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="blog-item">
+                        <div class="blog-img p-4 pb-0">
+                            <a href="#">
+                                <img src="{% static 'img/feature-1.jpg'%}" class="img-fluid w-100" alt="Como escolher o sistema ideal">
+                            </a>
+                        </div>
+                        <div class="blog-content p-4">
+                            <div class="blog-comment d-flex justify-content-between py-2 px-3 mb-4">
+                                <div class="small"><span class="fa fa-user text-primary me-2"></span> Equipe AM</div>
+                                <div class="small"><span class="fa fa-calendar text-primary me-2"></span> 26 Dez 2023</div>
+                            </div>
+                            <a href="#" class="h4 d-inline-block mb-3">Guia Definitivo: Como Escolher o Sistema de Gestão Ideal para Sua Academia</a>
+                            <p class="mb-3">Saiba quais critérios avaliar na hora de selecionar um software de gestão para seu negócio fitness.</p>
+                            <a href="#" class="btn btn-dark py-2 px-4 ms-2"> <span class="me-2">Ler Mais</span>  <i class="fa fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      
+       
+        <div class="container-fluid team py-5">
+            <div class="container py-5">
+                <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
+                    <h4 class="text-primary">Nossa Equipe</h4>
+                    <h1 class="display-4 mb-4">Conheça Nossos Especialistas</h1>
+                    <p class="mb-0">Contamos com profissionais altamente qualificados e experientes no mercado fitness, prontos para oferecer o melhor suporte e desenvolvimento para o seu negócio.
+                    </p>
+                </div>
+                <div class="row gy-5 gy-lg-4 gx-4">
+                    <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="team-item">
+                            <div class="team-img">
+                                <img src="{% static 'img/team-1.jpg'%}" class="img-fluid w-100" alt="Guilherme Pimentel">
+                                <div class="team-icon">
+                                    <a href="#" class="btn btn-primary btn-sm-square"><i class="fab fa-facebook-f"></i></a>
+                                    <a href="#" class="btn btn-primary btn-sm-square"><i class="fab fa-instagram"></i></a>
+                                    <a href="#" class="btn btn-primary btn-sm-square"><i class="fab fa-linkedin-in"></i></a>
+                                </div>
+                            </div>
+                            <div class="team-content">
+                                <h4>Guilherme Pimentel</h4>
+                                <p class="mb-0">Especialista em Gestão Fitness</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="team-item">
+                            <div class="team-img">
+                                <img src="{% static 'img/team-2.jpg'%}" class="img-fluid w-100" alt="Robério Robson">
+                                <div class="team-icon">
+                                    <a href="#" class="btn btn-primary btn-sm-square"><i class="fab fa-facebook-f"></i></a>
+                                    <a href="#" class="btn btn-primary btn-sm-square"><i class="fab fa-instagram"></i></a>
+                                    <a href="#" class="btn btn-primary btn-sm-square"><i class="fab fa-linkedin-in"></i></a>
+                                </div>
+                            </div>
+                            <div class="team-content">
+                                <h4>Robério Robson</h4>
+                                <p class="mb-0">Consultor Técnico</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.6s">
+                        <div class="team-item">
+                            <div class="team-img">
+                                <img src="{% static 'img/team-3.jpg'%}" class="img-fluid w-100" alt="Yasmin Rodrigues">
+                                <div class="team-icon">
+                                    <a href="#" class="btn btn-primary btn-sm-square"><i class="fab fa-facebook-f"></i></a>
+                                    <a href="#" class="btn btn-primary btn-sm-square"><i class="fab fa-instagram"></i></a>
+                                    <a href="#" class="btn btn-primary btn-sm-square"><i class="fab fa-linkedin-in"></i></a>
+                                </div>
+                            </div>
+                            <div class="team-content">
+                                <h4>Yasmin Rodrigues</h4>
+                                <p class="mb-0">Especialista em Customer Success</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+        <div class="container-fluid testimonial bg-dark py-5" style="margin-bottom: 90px;">
+            <div class="container py-5">
+                <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
+                    <h4 class="text-primary">Depoimentos</h4>
+                    <h1 class="display-4 text-white">O Que Nossos Clientes Estão Dizendo</h1>
+                </div>
+                <div class="testimonial-carousel owl-carousel wow fadeInUp" data-wow-delay="0.2s">
+                    <div class="testimonial-item mx-auto" style="max-width: 900px;">
+                        <span class="fa fa-quote-left fa-3x quote-icon"></span>
+                        <div class="testimonial-img mb-4">
+                            <img src="{% static 'img/testimonial-1.jpg'%}" class="img-fluid" alt="Cliente 1">
+                        </div>
+                        <p class="fs-4 text-white mb-4">"O Academia Manager revolucionou a gestão da minha academia. Antes tínhamos controles manuais e planilhas complexas. Agora tudo é integrado e automatizado. A redução de custos e o aumento da eficiência foram impressionantes!"
+                        </p>
+                        <div class="d-block">
+                            <h4 class="text-white">Carlos Silva</h4>
+                            <p class="m-0 pb-3">Proprietário da Academia PowerFit</p>
+                            <div class="d-flex">
+                                <i class="fas fa-star text-primary"></i>
+                                <i class="fas fa-star text-primary"></i>
+                                <i class="fas fa-star text-primary"></i>
+                                <i class="fas fa-star text-primary"></i>
+                                <i class="fas fa-star text-primary"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-item mx-auto" style="max-width: 900px;">
+                        <span class="fa fa-quote-left fa-3x quote-icon"></span>
+                        <div class="testimonial-img mb-4">
+                            <img src="{% static 'img/testimonial-2.jpg'%}" class="img-fluid" alt="Cliente 2">
+                        </div>
+                        <p class="fs-4 text-white mb-4">"Implementamos o Academia Manager em nossa rede com 5 unidades e os resultados foram surpreendentes. A centralização das informações e os relatórios gerenciais nos permitem tomar decisões muito mais assertivas. O suporte técnico é excelente!"
+                        </p>
+                        <div class="d-block">
+                            <h4 class="text-white">Mariana Oliveira</h4>
+                            <p class="m-0 pb-3">Gerente da Rede SuperGym</p>
+                            <div class="d-flex">
+                                <i class="fas fa-star text-primary"></i>
+                                <i class="fas fa-star text-primary"></i>
+                                <i class="fas fa-star text-primary"></i>
+                                <i class="fas fa-star text-primary"></i>
+                                <i class="fas fa-star text-primary"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-item mx-auto" style="max-width: 900px;">
+                        <span class="fa fa-quote-left fa-3x quote-icon"></span>
+                        <div class="testimonial-img mb-4">
+                            <img src="{% static 'img/testimonial-3.jpg'%}" class="img-fluid" alt="Cliente 3">
+                        </div>
+                        <p class="fs-4 text-white mb-4">"Como professora, o aplicativo integrado mudou completamente minha forma de trabalhar. Consigo acompanhar o progresso dos meus alunos, montar treinos personalizados e me comunicar com facilidade. Ferramenta indispensável para profissionais sérios!"
+                        </p>
+                        <div class="d-block">
+                            <h4 class="text-white">Patrícia Santos</h4>
+                            <p class="m-0 pb-3">Professora e Proprietária da Studio Corpo & Mente</p>
+                            <div class="d-flex">
+                                <i class="fas fa-star text-primary"></i>
+                                <i class="fas fa-star text-primary"></i>
+                                <i class="fas fa-star text-primary"></i>
+                                <i class="fas fa-star text-primary"></i>
+                                <i class="fas fa-star text-primary"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      
+        <div class="container-fluid footer py-5 wow fadeIn" data-wow-delay="0.2s">
+            <div class="container py-5">
+                <div class="row g-5 mb-5 align-items-center">
+                    <div class="col-lg-7">
+                        <div class="position-relative d-flex" style="transform: skew(18deg);">
+                            <input class="form-control border-0 w-100 py-3 pe-5" type="text" placeholder="Digite seu e-mail para assinar">
+                            <button type="button" class="btn-primary py-2 px-4 ms-3"> <span>Assinar</span></button>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="d-flex align-items-center justify-content-center justify-content-lg-end">
+                            <a class="btn btn-primary btn-md-square me-3" href=""><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-primary btn-md-square me-3" href=""><i class="fab fa-instagram"></i></a>
+                            <a class="btn btn-primary btn-md-square me-3" href=""><i class="fab fa-youtube"></i></a>
+                            <a class="btn btn-primary btn-md-square me-0" href=""><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-5">
+                    <div class="col-md-6 col-lg-6 col-xl-3">
+                        <div class="footer-item">
+                            <h4 class="text-white mb-4"><i class="fas fa-dumbbell text-primary me-2"></i> Academia Manager</h4>
+                            <p class="mb-0">Sistema completo de gestão para academias e studios. Oferecemos soluções inovadoras para transformar a administração do seu negócio fitness.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-xl-3">
+                        <div class="footer-item">
+                            <h4 class="text-white mb-4">Links Rápidos</h4>
+                            <a href="#"> Início</a>
+                            <a href="#"> Sistema</a>
+                            <a href="#"> Planos</a>
+                            <a href="#"> Treinadores</a>
+                            <a href="#"> Blog</a>
+                            <a href="#"> Contato</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-xl-3">
+                        <div class="footer-item">
+                            <h4 class="text-white mb-4"> Informações de Contato</h4>
+                            <div class="row g-2">
+                                <div class="col-12">
+                                    <div class="d-flex">
+                                        <i class="fas fa-map-marker-alt text-primary me-2"></i>
+                                        <div>
+                                            <h5 class="text-white mb-2">Endereço</h5>
+                                            <p class="mb-0">Av. Paulista, 1000 - São Paulo/SP</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="d-flex">
+                                        <i class="fas fa-envelope text-primary me-2"></i>
+                                        <div>
+                                            <h5 class="text-white mb-2">E-mail</h5>
+                                            <p class="mb-0">contato@academiamanager.com</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="d-flex">
+                                        <i class="fa fa-phone-alt text-primary me-2"></i>
+                                        <div>
+                                            <h5 class="text-white mb-2">Telefone</h5>
+                                            <p class="mb-0">(11) 9999-9999</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-xl-3">
+                        <div class="footer-item">
+                            <h4 class="text-white mb-4">Clientes em Destaque</h4>
+                            <div class="row g-2">
+                                <div class="col-3">
+                                    <div class="footer-item-img">
+                                        <a href="#"><img src="{% static 'img/work-9.jpg'%}" class="img-fluid" alt=""></a>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="footer-item-img">
+                                        <a href="#"><img src="{% static 'img/work-10.jpg'%}" class="img-fluid" alt=""></a>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="footer-item-img">
+                                        <a href="#"><img src="{% static 'img/work-11.jpg'%}" class="img-fluid" alt=""></a>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="footer-item-img">
+                                        <a href="#"><img src="{% static 'img/work-12.jpg'%}" class="img-fluid" alt=""></a>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="footer-item-img">
+                                        <a href="#"><img src="{% static 'img/work-1.jpg'%}" class="img-fluid" alt=""></a>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="footer-item-img">
+                                        <a href="#"><img src="{% static 'img/work-2.jpg'%}" class="img-fluid" alt=""></a>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="footer-item-img">
+                                        <a href="#"><img src="{% static 'img/work-3.jpg'%}" class="img-fluid" alt=""></a>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="footer-item-img">
+                                        <a href="#"><img src="{% static 'img/work-4.jpg'%}" class="img-fluid" alt=""></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container-fluid copyright py-4">
+            <div class="container">
+                <div class="row g-4 align-items-center">
+                    <div class="col-md-6 text-center text-md-start mb-md-0">
+                        <span class="text-body"><a href="#" class="border-bottom text-white"><i class="fas fa-copyright text-light me-2"></i>Academia Manager</a>, Todos os direitos reservados.</span>
+                    </div>
+                    <div class="col-md-6 text-center text-md-end text-body">
+                        Desenvolvido com <i class="fa fa-heart text-danger"></i> pela <a class="border-bottom text-white" href="#">Equipe Academia Manager</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="back-to-top">
+            <a href="#" class="btn"><i class="fa fa-arrow-up"></i></a>  
+        </div>   
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="{% static 'lib/wow/wow.min.js' %}"></script>
+        <script src="{% static 'lib/easing/easing.min.js '%}"></script>
+        <script src="{% static 'lib/waypoints/waypoints.min.js' %}"></script>
+        <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
+        
+        <script src="{% static 'js/main.js' %}"></script>
+    </body>
+
+</html>

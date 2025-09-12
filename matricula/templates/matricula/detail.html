@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Detalhes da Matrícula</h2>
+<p><strong>Aluno:</strong> {{ matricula.aluno.username }}</p>
+<p><strong>Atividade:</strong> {{ matricula.atividade.nome }}</p>
+<p><strong>Valor:</strong> {{ matricula.valor }}</p>
+<p><strong>Data:</strong> {{ matricula.data_matricula }}</p>
+<p><strong>Status:</strong> {{ matricula.status|yesno:"Ativo,Inativo" }}</p>
+<a href="{% url 'editar_matricula' matricula.id %}" class="btn btn-warning">Editar</a>
+<a href="{% url 'lista_matriculas' %}" class="btn btn-secondary">Voltar</a>
+{% endblock %}

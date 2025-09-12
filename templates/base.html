@@ -1,0 +1,95 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sistema de Gerenciamento de Academia</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="{% static 'css/base.css' %}" rel="stylesheet">
+</head>
+<body>
+  
+
+  <div class="sidebar">
+    <div class="sidebar-header">Academia Manager</div>
+    <div class="sidebar-menu">
+      <a href="{% url 'lista_funcionarios' %}" class="{% if 'funcionarios' in request.path %}active{% endif %}">
+        <i class="fas fa-user-tie"></i> Funcionários
+      </a>
+      <a href="{% url 'lista_atividades' %}" class="{% if 'atividades' in request.path %}active{% endif %}">
+        <i class="fas fa-dumbbell"></i> Atividades
+      </a>
+      <a href="{% url 'lista_matriculas' %}" class="{% if 'matriculas' in request.path %}active{% endif %}">
+        <i class="fas fa-clipboard-list"></i> Matrículas
+      </a>
+      <a href="{% url 'lista_fatura' %}" class="{% if 'faturas' in request.path %}active{% endif %}">
+        <i class="fas fa-file-invoice-dollar"></i> Faturas
+      </a>
+      <a href="{% url 'lista_avaliacao' %}" class="{% if 'avaliacoes' in request.path %}active{% endif %}">
+        <i class="fas fa-ruler-combined"></i> Avaliações
+      </a>
+    </div>
+  </div>
+
+
+  <div class="main-content">
+    
+    
+    <nav class="top-nav">
+      <div class="user-menu" id="userMenu">
+        <div class="user-info">
+          <div>{{ request.user.username }}</div>
+          <small>
+            {% if request.user.is_superuser %}
+              Administrador
+            {% else %}
+              Usuário
+            {% endif %}
+          </small>
+        </div>
+        <img src="https://via.placeholder.com/40" alt="User" />
+
+       
+        <div class="user-dropdown" id="userDropdown">
+          <a href="{% url 'home' %}">
+            <i class="fas fa-home"></i> Tela Inicial
+          </a>
+          <div class="divider"></div>
+          <form action="{% url 'logout' %}" method="post" style="margin:0;">
+            {% csrf_token %}
+            <button type="submit">Sair</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+
+    
+    <div class="content">
+      {% block content %}
+      {% endblock %}
+    </div>
+
+  </div>
+
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const userMenu = document.getElementById('userMenu');
+      const userDropdown = document.getElementById('userDropdown');
+
+      userMenu.addEventListener('click', function(e) {
+        e.stopPropagation();
+        userDropdown.style.display = userDropdown.style.display === 'block' ? 'none' : 'block';
+      });
+
+      document.addEventListener('click', function(e) {
+        if (!userMenu.contains(e.target)) {
+          userDropdown.style.display = 'none';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

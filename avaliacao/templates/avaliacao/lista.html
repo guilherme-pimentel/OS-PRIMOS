@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="content">
+    <h1 style="margin-bottom: 1.5rem;">Avaliações</h1>
+
+    <div class="card">
+      <div class="card-header">
+        <span>Lista de Avaliações</span>
+        <a href="{% url 'adicionar_avaliacao' %}" class="btn btn-primary btn-sm">
+          <i class="fas fa-plus"></i> Adicionar
+        </a>
+      </div>
+      <div class="card-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Aluno</th>
+              <th>Atividade</th>
+              <th>Peso (kg)</th>
+              <th>Altura (cm)</th>
+              <th>Avaliador</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for av in avaliacoes %}
+              <tr>
+                <td>{{ av.matricula.aluno.username }}</td>
+                <td>
+                  {% for atv in av.matricula.atividade.all %}
+                    {{ atv.nome }}{% if not forloop.last %}, {% endif %}
+                  {% empty %}
+                    Nenhuma atividade
+                  {% endfor %}
+                </td>
+                <td>{{ av.peso }}</td>
+                <td>{{ av.altura }}</td>
+                <td>{{ av.avaliador.username }}</td>
+                <td>
+                  <a href="{% url 'editar_avaliacao' av.id %}" class="btn btn-sm btn-primary">
+                    <i class="fas fa-edit"></i> Editar
+                  </a>
+                  <a href="{% url 'detalhe_avaliacao' av.id %}" class="btn btn-info btn-sm">
+                    <i class="fas fa-eye"></i> Detalhes
+                  </a>
+                  <a href="{% url 'excluir_avaliacao' av.id %}" class="btn btn-sm btn-danger">
+                    <i class="fas fa-trash"></i> Excluir
+                  </a>
+                </td>
+              </tr>
+            {% empty %}
+              <tr>
+                <td colspan="6">Nenhuma avaliação cadastrada.</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+{% endblock %}
